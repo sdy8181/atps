@@ -49,4 +49,4 @@ def start_http_server():
 # t.setDaemon(True)
 # t.start()
 
-app.run(host='10.10.99.30', debug=True)
+app.run(host='10.10.99.12', debug=True)

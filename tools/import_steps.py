@@ -13,9 +13,12 @@ for f in file:
         param_flag = False
         global s
         if not s is None:
-            print('ready to insert steps....')
-            db.session.add(s)
-            db.session.commit()
+            try:
+                print('ready to insert steps....')
+                db.session.add(s)
+                db.session.commit()
+            except:
+                db.session.rollback()
 
         tmp_str = f.split('<')
 
@@ -42,8 +45,11 @@ for f in file:
         # s = s[:-1] + ',  ' + params + ')'
         print(chk_flag)
         s = models.Steps(name=step_str, is_chk=chk_flag, param_name = params)
-db.session.add(s)
-db.session.commit()
+try:
+    db.session.add(s)
+    db.session.commit()
+except:
+    db.session.rollback()
 
 
 
